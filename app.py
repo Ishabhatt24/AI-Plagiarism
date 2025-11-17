@@ -12,9 +12,9 @@ except FileNotFoundError:
     st.stop()
 
 # Streamlit page setup
-st.set_page_config(page_title="Security Match Predictor", layout="centered")
-st.title("🔐 Security Match Predictor")
-st.markdown("Use this app to check if two financial descriptions refer to the same security.")
+st.set_page_config(page_title="AI-Based Plagiarism Detector", layout="centered")
+st.title("🧠 AI-Based Plagiarism Detector")
+st.markdown("Use this app to detect potential plagiarism between two text inputs using machine learning.")
 
 # Input fields
 desc_x = st.text_area("Enter Description X", height=100)
