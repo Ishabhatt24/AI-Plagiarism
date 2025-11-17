@@ -26,9 +26,9 @@ if st.button("Predict"):
     if not desc_x.strip() or not desc_y.strip():
         st.warning("Please enter both descriptions.")
     else:
-       from sklearn.metrics.pairwise import cosine_similarity
+        from sklearn.metrics.pairwise import cosine_similarity
 
-       try:
+        try:
             vec_x = vectorizer.transform([desc_x])
             vec_y = vectorizer.transform([desc_y])
             similarity = cosine_similarity(vec_x, vec_y)[0][0]
