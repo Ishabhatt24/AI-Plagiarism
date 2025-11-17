@@ -15,6 +15,9 @@ except FileNotFoundError:
 st.set_page_config(page_title="AI-Based Plagiarism Detector", layout="centered")
 st.title("🧠 AI-Based Plagiarism Detector")
 st.markdown("Use this app to detect potential plagiarism between two text inputs using machine learning.")
+st.subheader("Prediction Result")
+st.write(f"Similarity Score: {similarity:.2f}")
+st.markdown(f"### {result}")
 
 # Input fields
 desc_x = st.text_area("Enter Description X", height=100)
