@@ -25,9 +25,15 @@ if st.button("Predict"):
     if not desc_x.strip() or not desc_y.strip():
         st.warning("Please enter both descriptions.")
     else:
-        combined_text = desc_x + " " + desc_y
-        vectorized_input = vectorizer.transform([combined_text])
-        prediction = model.predict(vectorized_input)[0]
-        result = "✅ Same Security" if prediction else "❌ Different Security"
-        st.subheader("Prediction Result")
-        st.success(result)
+       from sklearn.metrics.pairwise import cosine_similarity
+
+vec_x = vectorizer.transform([desc_x])
+vec_y = vectorizer.transform([desc_y])
+similarity = cosine_similarity(vec_x, vec_y)[0][0]
+
+if similarity > 0.85:
+    result = "✅ Same Security"
+elif similarity > 0.5:
+    result = "⚠️ Partial Match"
+else:
+    result = "❌ Different Security"
