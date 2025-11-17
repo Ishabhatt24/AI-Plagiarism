@@ -15,9 +15,7 @@ except FileNotFoundError:
 st.set_page_config(page_title="AI-Based Plagiarism Detector", layout="centered")
 st.title("🧠 AI-Based Plagiarism Detector")
 st.markdown("Use this app to detect potential plagiarism between two text inputs using machine learning.")
-st.subheader("Prediction Result")
-st.write(f"Similarity Score: {similarity:.2f}")
-st.markdown(f"### {result}")
+
 
 # Input fields
 desc_x = st.text_area("Enter Description X", height=100)
@@ -30,16 +28,23 @@ if st.button("Predict"):
     else:
        from sklearn.metrics.pairwise import cosine_similarity
 
-vec_x = vectorizer.transform([desc_x])
-vec_y = vectorizer.transform([desc_y])
-similarity = cosine_similarity(vec_x, vec_y)[0][0]
+ try:
+            vec_x = vectorizer.transform([desc_x])
+            vec_y = vectorizer.transform([desc_y])
+            similarity = cosine_similarity(vec_x, vec_y)[0][0]
 
-if similarity > 0.85:
-    result = "✅ Same Security"
-elif similarity > 0.5:
-    result = "⚠️ Partial Match"
-else:
-    result = "❌ Different Security"
+            if similarity > 0.85:
+                result = "✅ Same Security"
+            elif similarity > 0.5:
+                result = "⚠️ Partial Match"
+            else:
+                result = "❌ Different Security"
+
+            st.subheader("Prediction Result")
+            st.write(f"Similarity Score: {similarity:.2f}")
+            st.markdown(f"### {result}")
+        except Exception as e:
+            st.error(f"Prediction failed: {e}")
 
 
 
