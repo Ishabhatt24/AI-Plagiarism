@@ -28,7 +28,7 @@ if st.button("Predict"):
     else:
        from sklearn.metrics.pairwise import cosine_similarity
 
- try:
+       try:
             vec_x = vectorizer.transform([desc_x])
             vec_y = vectorizer.transform([desc_y])
             similarity = cosine_similarity(vec_x, vec_y)[0][0]
