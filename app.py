@@ -37,3 +37,10 @@ elif similarity > 0.5:
     result = "⚠️ Partial Match"
 else:
     result = "❌ Different Security"
+
+st.subheader("Prediction Result")
+    st.write(f"Similarity Score: {similarity:.2f}")
+    st.markdown(f"### {result}")
+except Exception as e:
+    st.error(f"Prediction failed: {e}")
+
